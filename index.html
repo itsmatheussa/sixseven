@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Infinity — Avançado, Fluido e Escalável</title>
+<title>Infinity — A Velocidade da Luz</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -16,9 +16,8 @@ html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 
 :root {
   --bg-black: #000000;
-  --panel-dark: #09090b;      /* Preto profundo estilo Obsidian */
-  --panel-card: #121214;      /* Cinza Apple Pro */
-  --panel-border: rgba(255, 255, 255, 0.06);
+  --panel-dark: rgba(18, 18, 20, 0.6);      /* Mais translúcido para as luzes passarem */
+  --panel-border: rgba(255, 255, 255, 0.08);
   --text-main: #ffffff;
   --text-muted: #86868b;
   --text-silver: #f5f5f7;
@@ -28,7 +27,7 @@ html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
   --accent-purple: #bf5af2;
   
   --container-max: 1040px;
-  --blur-effect: blur(20px) saturate(190%);
+  --blur-effect: blur(24px) saturate(190%);
 }
 
 body {
@@ -41,7 +40,38 @@ body {
 }
 
 /* ─────────────────────────────────────────
-   FONDO DE ESTRELAS AVANÇADO
+   EFEITOS DE LUZ AMBIENTE (NOVIDADE)
+───────────────────────────────────────── */
+.ambient-glow {
+  position: fixed;
+  width: 50vw;
+  height: 50vw;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(150px); /* Blur super denso para efeito volumétrico */
+  z-index: -2; /* Fica atrás das estrelas */
+  opacity: 0.4;
+  animation: floatGlow 12s ease-in-out infinite alternate;
+}
+
+.glow-blue {
+  top: -10%; left: -10%;
+  background: radial-gradient(circle, rgba(41,151,255,0.6) 0%, transparent 60%);
+}
+
+.glow-purple {
+  bottom: -20%; right: -10%;
+  background: radial-gradient(circle, rgba(191,90,242,0.5) 0%, transparent 60%);
+  animation-delay: -5s;
+}
+
+@keyframes floatGlow {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+  100% { transform: translate(50px, 30px) scale(1.1); opacity: 0.6; }
+}
+
+/* ─────────────────────────────────────────
+   FONDO DE ESTRELAS 3D
 ───────────────────────────────────────── */
 #star-canvas {
   position: fixed;
@@ -49,6 +79,7 @@ body {
   width: 100%; height: 100%;
   z-index: -1;
   pointer-events: none;
+  mix-blend-mode: screen;
 }
 
 /* ─────────────────────────────────────────
@@ -59,7 +90,7 @@ nav {
   top: 0; left: 0; right: 0;
   z-index: 1000;
   height: 52px;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.4); /* Mais transparente para ver as luzes */
   backdrop-filter: var(--blur-effect);
   -webkit-backdrop-filter: var(--blur-effect);
   border-bottom: 1px solid var(--panel-border);
@@ -97,14 +128,12 @@ nav {
 
 .nav-links a {
   font-size: 13px;
-  color: var(--text-muted);
+  color: var(--text-silver);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
-.nav-links a:hover {
-  color: var(--text-main);
-}
+.nav-links a:hover { color: var(--accent-blue); }
 
 .nav-cta {
   background: var(--text-main);
@@ -119,14 +148,14 @@ nav {
 
 .nav-cta:hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
 }
 
 /* ─────────────────────────────────────────
    HERO & TIPOGRAFIA
 ───────────────────────────────────────── */
 .hero {
-  padding-top: 140px;
+  padding-top: 150px;
   padding-bottom: 60px;
   text-align: center;
 }
@@ -140,26 +169,27 @@ nav {
 .hero-badge {
   font-size: 13px;
   font-weight: 500;
-  color: var(--accent-blue);
-  background: rgba(41, 151, 255, 0.08);
-  border: 1px solid rgba(41, 151, 255, 0.15);
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 6px 16px;
   border-radius: 980px;
   display: inline-block;
   margin-bottom: 24px;
   letter-spacing: 0.02em;
+  backdrop-filter: blur(10px);
 }
 
 .hero h1 {
-  font-size: 64px;
+  font-size: 68px;
   font-weight: 700;
-  line-height: 1.08;
+  line-height: 1.05;
   letter-spacing: -0.035em;
   margin-bottom: 20px;
 }
 
 .hero h1 .gradient-title {
-  background: linear-gradient(180deg, #ffffff 30%, #a1a1a6 100%);
+  background: linear-gradient(180deg, #ffffff 10%, rgba(255,255,255,0.4) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -167,7 +197,8 @@ nav {
 .hero p {
   font-size: 22px;
   line-height: 1.38;
-  color: var(--text-muted);
+  color: var(--text-silver);
+  opacity: 0.8;
   max-width: 600px;
   margin: 0 auto 36px;
 }
@@ -180,34 +211,34 @@ nav {
 }
 
 .btn-apple-primary {
-  background: var(--accent-blue);
-  color: white;
-  padding: 12px 26px;
+  background: var(--text-main);
+  color: var(--bg-black);
+  padding: 14px 28px;
   border-radius: 980px;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 15px rgba(255,255,255,0.1);
 }
 
 .btn-apple-primary:hover {
-  background: #147ce5;
-  box-shadow: 0 10px 30px rgba(41, 151, 255, 0.35);
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(255,255,255,0.3);
 }
 
 .btn-apple-link {
-  color: var(--accent-blue);
+  color: var(--text-main);
   font-size: 16px;
   text-decoration: none;
   font-weight: 500;
+  display: flex; gap: 6px; align-items: center;
 }
 
-.btn-apple-link:hover {
-  text-decoration: underline;
-}
+.btn-apple-link:hover { opacity: 0.7; }
 
 /* ─────────────────────────────────────────
-   MOCKUP MACBOOK PRO REALÍSTICO COM VÍDEO
+   MOCKUP MACBOOK PRO
 ───────────────────────────────────────── */
 .macbook-container {
   max-width: 860px;
@@ -217,28 +248,26 @@ nav {
 }
 
 .macbook-hardware {
-  transform: rotateX(4deg);
+  transform: rotateX(5deg) scale(0.98);
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .macbook-container:hover .macbook-hardware {
-  transform: rotateX(0deg);
+  transform: rotateX(0deg) scale(1);
 }
 
-/* Tela do Notebook */
 .macbook-screen {
   background: #000;
-  border: 12px solid #1c1c1e; /* Moldura preta fosca */
+  border: 12px solid #1c1c1e;
   border-bottom-width: 14px;
   border-radius: 16px 16px 0 0;
   position: relative;
   aspect-ratio: 16 / 10;
   box-shadow: 0 40px 80px -15px rgba(0, 0, 0, 0.9), 
-              inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+              inset 0 0 0 1px rgba(255, 255, 255, 0.1);
   overflow: hidden;
 }
 
-/* Câmera/Notch sutil superior */
 .macbook-camera {
   position: absolute;
   top: 4px; left: 50%;
@@ -250,31 +279,25 @@ nav {
   box-shadow: inset 0 0 2px rgba(255,255,255,0.2);
 }
 
-/* Conteúdo interno da tela (Vídeo) */
 .macbook-screen iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
+  width: 100%; height: 100%;
+  border: none; display: block;
 }
 
-/* Corpo / Base de Alumínio inferior */
 .macbook-body {
   height: 10px;
-  background: linear-gradient(to bottom, #515154 0%, #3a3a3c 100%); /* Space Gray */
+  background: linear-gradient(to bottom, #515154 0%, #3a3a3c 100%);
   border-radius: 0 0 16px 16px;
   position: relative;
   border-top: 1px solid rgba(255,255,255,0.2);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.7);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.8);
 }
 
-/* Entalhe frontal para abrir a tampa */
 .macbook-notch {
   position: absolute;
   top: 0; left: 50%;
   transform: translateX(-50%);
-  width: 90px;
-  height: 4px;
+  width: 90px; height: 4px;
   background: #242426;
   border-radius: 0 0 6px 6px;
 }
@@ -282,187 +305,132 @@ nav {
 /* ─────────────────────────────────────────
    BENTO GRID FEATURES
 ───────────────────────────────────────── */
-.section-padding {
-  padding: 100px 0;
-}
+.section-padding { padding: 120px 0; }
 
 .section-title {
-  text-align: center;
-  margin-bottom: 60px;
-  padding: 0 24px;
+  text-align: center; margin-bottom: 60px; padding: 0 24px;
 }
 
 .section-title h2 {
-  font-size: 44px;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  margin-bottom: 16px;
+  font-size: 44px; font-weight: 700;
+  letter-spacing: -0.03em; margin-bottom: 16px;
 }
 
 .section-title p {
-  font-size: 20px;
-  color: var(--text-muted);
+  font-size: 20px; color: var(--text-silver); opacity: 0.8;
 }
 
 .bento-grid {
-  max-width: var(--container-max);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 0 24px;
+  max-width: var(--container-max); margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px; padding: 0 24px;
 }
 
 .bento-card {
   background: var(--panel-dark);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--panel-border);
-  border-radius: 20px;
+  border-radius: 24px;
   padding: 44px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: flex; flex-direction: column; justify-content: space-between;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
 }
 
 .bento-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
 }
 
-.bento-card.large {
-  grid-column: span 2;
-  background: radial-gradient(circle at bottom right, #131316 0%, var(--panel-dark) 100%);
-}
+.bento-card.large { grid-column: span 2; }
 
 .bento-card h3 {
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 12px;
-  letter-spacing: -0.02em;
+  font-size: 22px; font-weight: 600;
+  margin-bottom: 12px; letter-spacing: -0.02em;
 }
 
 .bento-card p {
-  font-size: 16px;
-  color: var(--text-muted);
+  font-size: 16px; color: var(--text-muted); line-height: 1.5;
 }
 
 .icon-wrapper {
   width: 48px; height: 48px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
   font-size: 22px; margin-bottom: 28px;
 }
 
 /* ─────────────────────────────────────────
-   PLANOS DE PREÇO MÍNIMOS
+   PLANOS DE PREÇO
 ───────────────────────────────────────── */
 .pricing-grid {
-  max-width: var(--container-max);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  padding: 0 24px;
+  max-width: var(--container-max); margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; padding: 0 24px;
 }
 
 .price-box {
   background: var(--panel-dark);
+  backdrop-filter: blur(20px);
   border: 1px solid var(--panel-border);
-  border-radius: 20px;
-  padding: 44px;
-  display: flex;
-  flex-direction: column;
-  transition: all 0.4s ease;
+  border-radius: 24px; padding: 44px;
+  display: flex; flex-direction: column; transition: all 0.4s ease;
 }
 
 .price-box.premium {
-  border: 1px solid rgba(41, 151, 255, 0.4);
-  background: linear-gradient(180deg, rgba(41,151,255,0.03) 0%, var(--panel-dark) 100%);
+  border: 1px solid rgba(191,90,242, 0.5);
+  background: linear-gradient(180deg, rgba(41,151,255,0.05) 0%, rgba(191,90,242,0.05) 100%);
 }
 
 .price-box h3 {
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--text-silver);
-  margin-bottom: 8px;
+  font-size: 20px; font-weight: 600; color: var(--text-silver); margin-bottom: 8px;
 }
 
 .price-box .cost {
-  font-size: 52px;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  margin-bottom: 28px;
+  font-size: 52px; font-weight: 700; letter-spacing: -0.04em; margin-bottom: 28px;
 }
 
-.price-box .cost span {
-  font-size: 22px;
-  color: var(--text-muted);
-}
+.price-box .cost span { font-size: 22px; color: var(--text-muted); }
 
-.price-list {
-  list-style: none;
-  margin-bottom: 40px;
-  flex-grow: 1;
-}
+.price-list { list-style: none; margin-bottom: 40px; flex-grow: 1; }
 
 .price-list li {
-  font-size: 15px;
-  color: var(--text-muted);
-  margin-bottom: 14px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  font-size: 15px; color: var(--text-muted); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 10px;
 }
 
-.price-list li::before {
-  content: "→";
-  color: var(--accent-blue);
-}
+.price-list li::before { content: "✓"; color: var(--accent-purple); font-weight: bold;}
 
 .price-action {
-  display: block;
-  text-align: center;
-  padding: 12px;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.2s;
+  display: block; text-align: center; padding: 14px;
+  border-radius: 12px; font-size: 15px; font-weight: 600;
+  text-decoration: none; transition: all 0.2s;
 }
 
 .price-action.fill { background: var(--text-main); color: var(--bg-black); }
-.price-action.fill:hover { background: #e8e8ed; }
-.price-action.stroke { background: rgba(255,255,255,0.04); color: var(--text-main); border: 1px solid var(--panel-border); }
-.price-action.stroke:hover { background: rgba(255,255,255,0.08); }
+.price-action.fill:hover { opacity: 0.8; }
+.price-action.stroke { background: rgba(255,255,255,0.05); color: var(--text-main); border: 1px solid var(--panel-border); }
+.price-action.stroke:hover { background: rgba(255,255,255,0.1); }
 
 /* ─────────────────────────────────────────
    ANIMATION & FOOTER
 ───────────────────────────────────────── */
 .reveal {
-  opacity: 0;
-  transform: translateY(30px);
+  opacity: 0; transform: translateY(40px);
   transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.reveal.in {
-  opacity: 1;
-  transform: translateY(0);
-}
+.reveal.in { opacity: 1; transform: translateY(0); }
 
 footer {
-  background: #000;
-  padding: 50px 0;
+  background: transparent; padding: 60px 0;
   border-top: 1px solid var(--panel-border);
-  color: var(--text-muted);
-  font-size: 13px;
+  color: var(--text-muted); font-size: 13px; text-align: center;
 }
 
-/* ─────────────────────────────────────────
-   RESPONSIVIDADE
-───────────────────────────────────────── */
 @media (max-width: 768px) {
   .hero h1 { font-size: 42px; }
   .bento-grid, .pricing-grid { grid-template-columns: 1fr; }
@@ -472,6 +440,9 @@ footer {
 </style>
 </head>
 <body>
+
+<div class="ambient-glow glow-blue"></div>
+<div class="ambient-glow glow-purple"></div>
 
 <canvas id="star-canvas"></canvas>
 
@@ -488,12 +459,12 @@ footer {
 
 <section class="hero">
   <div class="hero-content reveal">
-    <span class="hero-badge">Infinity Pro 2.0</span>
-    <h1>Sua produção Lovable.<br><span class="gradient-title">Em escala absoluta.</span></h1>
-    <p>A arquitetura definitiva para injeção segura e inteligente de créditos está aqui. Maximize seus fluxos de trabalho instantaneamente.</p>
+    <span class="hero-badge">Infinity Motor 3.0</span>
+    <h1>Alcance o impossível.<br><span class="gradient-title">Na velocidade da luz.</span></h1>
+    <p>A arquitetura definitiva para injeção de créditos no Lovable. Escala instantânea guiada pela sua necessidade de produção.</p>
     <div class="hero-buttons">
       <a href="#planos" class="btn-apple-primary">Ver Planos</a>
-      <a href="#tecnologia" class="btn-apple-link">Conhecer Engenharia →</a>
+      <a href="#tecnologia" class="btn-apple-link">Ver Engenharia →</a>
     </div>
   </div>
 
@@ -512,46 +483,38 @@ footer {
 
 <section class="section-padding" id="tecnologia">
   <div class="section-title reveal">
-    <h2>Construído para profissionais.</h2>
-    <p>Segurança inteligente integrada de ponta a ponta na sua conta Lovable.</p>
+    <h2>Performance além do limite.</h2>
+    <p>Segurança integrada com entrega em tempo real.</p>
   </div>
   
   <div class="bento-grid">
     <div class="bento-card large reveal">
-      <div>
-        <div class="icon-wrapper">🛡️</div>
-        <h3>Injeção Nativa Segura</h3>
-        <p>Desenvolvemos um sistema indetectável que conversa diretamente com os pacotes internos do workspace. Zero uso de farms automatizadas ou bots externos comprometidos.</p>
-      </div>
+      <div class="icon-wrapper">🛡️</div>
+      <h3>Segurança Baseada em Hardware</h3>
+      <p>Desenvolvemos um sistema que simula interações orgânicas, garantindo 100% de integridade para seus projetos. Sua conta Lovable nunca esteve tão blindada.</p>
     </div>
     <div class="bento-card reveal">
-      <div>
-        <div class="icon-wrapper">⚡</div>
-        <h3>Entrega Instantânea</h3>
-        <p>Processamento distribuído em nuvem que aloca seus créditos na conta em menos de um segundo.</p>
-      </div>
+      <div class="icon-wrapper">⚡</div>
+      <h3>Velocidade Warp</h3>
+      <p>Esqueça o tempo de espera. Nossos clusters distribuídos garantem a injeção em frações de segundo.</p>
     </div>
     <div class="bento-card reveal">
-      <div>
-        <div class="icon-wrapper">👁️</div>
-        <h3>Total Discrição</h3>
-        <p>A privacidade do código e dos seus ambientes de desenvolvimento permanecem 100% intactos.</p>
-      </div>
+      <div class="icon-wrapper">👁️</div>
+      <h3>Rastreabilidade Zero</h3>
+      <p>Operamos nas sombras da API do Lovable, sem acionar flags de bots externos.</p>
     </div>
     <div class="bento-card large reveal">
-      <div>
-        <div class="icon-wrapper">♾️</div>
-        <h3>Créditos sem Expiração</h3>
-        <p>Sua carga de créditos é vitalícia. Use hoje, no próximo mês ou distribua ao longo do ano conforme a necessidade real de demanda do seu squad ou projeto.</p>
-      </div>
+      <div class="icon-wrapper">♾️</div>
+      <h3>Validade Eterna</h3>
+      <p>Os créditos injetados entram como pacote vitalício. Construa seu império digital no seu próprio ritmo, sem pressões de expiração mensal.</p>
     </div>
   </div>
 </section>
 
 <section class="section-padding" id="planos">
   <div class="section-title reveal">
-    <h2>Planos diretos. Sem surpresas.</h2>
-    <p>Adquira pacotes de uso avulso de acordo com a sua necessidade.</p>
+    <h2>Escolha seu vetor.</h2>
+    <p>Acelere sem contratos complexos. Compra avulsa, entrega imediata.</p>
   </div>
 
   <div class="pricing-grid">
@@ -560,7 +523,7 @@ footer {
       <div class="cost"><span>R$</span>19,90</div>
       <ul class="price-list">
         <li>500 Créditos Avulsos</li>
-        <li>Entrega Via Api</li>
+        <li>Entrega Base</li>
         <li>Suporte Padrão</li>
       </ul>
       <a href="#" class="price-action stroke">Escolher Pacote</a>
@@ -571,9 +534,9 @@ footer {
       <div class="cost"><span>R$</span>49,90</div>
       <ul class="price-list">
         <li>1.500 Créditos Avulsos</li>
-        <li>Entrega Prioritária VIP</li>
-        <li>Segurança de Camada Dupla</li>
-        <li>Suporte Exclusivo</li>
+        <li>Prioridade Warp (Instantâneo)</li>
+        <li>Criptografia Dupla</li>
+        <li>Suporte Prioritário</li>
       </ul>
       <a href="#" class="price-action fill">Escolher Profissional</a>
     </div>
@@ -583,135 +546,168 @@ footer {
       <div class="cost"><span>R$</span>139,90</div>
       <ul class="price-list">
         <li>5.000 Créditos Avulsos</li>
-        <li>Servidor Dedicado Estável</li>
-        <li>Blindagem Avançada</li>
+        <li>Cluster Dedicado</li>
+        <li>Modo Stealth Extremo</li>
       </ul>
       <a href="#" class="price-action stroke">Escolher Studio</a>
     </div>
   </div>
 </section>
 
-<footer style="background: #000; padding: 40px 0; text-align: center; font-size: 13px;">
+<footer>
   <div style="max-width: var(--container-max); margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center;">
-    <div>© 2026 Infinity Technologies. Engenharia de alta performance.</div>
+    <div>© 2026 Infinity Technologies. Todos os direitos reservados.</div>
     <div class="nav-logo" style="font-size: 15px;">Infinity<span>∞</span></div>
   </div>
 </footer>
 
 <script>
-/* ── INTERACTIVE STARFIELD EFFECT (APPLE TECH VERSION) ── */
+/* ─────────────────────────────────────────
+   WARP DRIVE: EFEITO VELOCIDADE DA LUZ 3D
+───────────────────────────────────────── */
 const canvas = document.getElementById('star-canvas');
 const ctx = canvas.getContext('2d');
-let stars = [];
-const starCount = 160;
-let mouse = { x: -2000, y: -2000 };
 
-function initStars() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  stars = [];
-  for (let i = 0; i < starCount; i++) {
-    stars.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      baseSize: Math.random() * 1.2 + 0.4,
-      opacity: Math.random() * 0.4 + 0.1,
-      speedY: -(Math.random() * 0.2 + 0.05) // Drift lento contínuo
-    });
+let width, height;
+let stars = [];
+const numStars = 600; // Maior densidade de estrelas
+
+// Controles de Ponto de Fuga (Centro da Tela / Mouse)
+let centerX, centerY;
+let targetX, targetY;
+
+// Controle de Velocidade Dinâmica
+let baseSpeed = 1.5;
+let speed = baseSpeed;
+let targetSpeed = baseSpeed;
+
+// Variáveis para detectar velocidade do mouse
+let lastMouseX = -1;
+let lastMouseY = -1;
+let mouseVelocity = 0;
+
+class Star {
+  constructor() {
+    this.reset(true);
+  }
+
+  reset(initial = false) {
+    this.x = (Math.random() - 0.5) * width * 3; // Espalha horizontalmente
+    this.y = (Math.random() - 0.5) * height * 3; // Espalha verticalmente
+    // Se for inicial, randomiza o Z. Se resetou por ter passado, nasce longe.
+    this.z = initial ? Math.random() * width : width; 
+    this.pz = this.z;
+    this.colorOpacity = Math.random() * 0.6 + 0.2;
+  }
+
+  update() {
+    this.pz = this.z;
+    this.z -= speed;
+
+    if (this.z <= 0) {
+      this.reset();
+    }
+  }
+
+  draw() {
+    // Projeção 3D Clássica
+    let fov = 300;
+    
+    // Posição Atual
+    let sx = (this.x / this.z) * fov + centerX;
+    let sy = (this.y / this.z) * fov + centerY;
+
+    // Posição Passada (para criar o rastro da velocidade)
+    let px = (this.x / this.pz) * fov + centerX;
+    let py = (this.y / this.pz) * fov + centerY;
+
+    // A cor muda do centro (branco) para o azul/roxo nas bordas
+    let distFromCenter = Math.sqrt((sx - centerX)**2 + (sy - centerY)**2);
+    let colorRatio = Math.min(1, distFromCenter / (width/2));
+    
+    let r = Math.floor(255 - (100 * colorRatio));
+    let g = Math.floor(255 - (150 * colorRatio));
+    let b = 255;
+
+    ctx.beginPath();
+    // Espessura da estrela aumenta conforme chega perto
+    ctx.lineWidth = Math.max(0.5, (1 - this.z / width) * 3);
+    ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${this.colorOpacity})`;
+    ctx.moveTo(px, py);
+    ctx.lineTo(sx, sy);
+    ctx.stroke();
   }
 }
 
-function drawStars() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+function init() {
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+  centerX = targetX = width / 2;
+  centerY = targetY = height / 2;
   
-  for (let i = 0; i < stars.length; i++) {
-    let s = stars[i];
-    
-    // Movimento flutuante
-    s.y += s.speedY;
-    if (s.y < 0) s.y = canvas.height;
-
-    let dx = mouse.x - s.x;
-    let dy = mouse.y - s.y;
-    let distance = Math.sqrt(dx * dx + dy * dy);
-    let maxDistance = 160; // Raio de influência do mouse
-    
-    let r = 255, g = 255, b = 255;
-    let currentOpacity = s.opacity;
-    let currentSize = s.baseSize;
-    let glow = 0;
-
-    // Se estiver perto do mouse, ativa os efeitos tecnológicos de cor e link neural
-    if (distance < maxDistance) {
-      let influence = 1 - (distance / maxDistance);
-      
-      // Fusão do Branco para o Roxo/Azul tecnológico da Apple
-      r = Math.floor(255 - (214 * influence));
-      g = Math.floor(255 - (130 * influence));
-      b = 255;
-
-      currentOpacity = Math.min(1, s.opacity + influence * 0.8);
-      currentSize = s.baseSize + (influence * 1.8);
-      glow = influence * 12;
-
-      // Desenha as teias neurais/linhas de rede apenas perto do mouse
-      for (let j = i + 1; j < stars.length; j++) {
-        let s2 = stars[j];
-        let s2dx = s.x - s2.x;
-        let s2dy = s.y - s2.y;
-        let s2dist = Math.sqrt(s2dx * s2dx + s2dy * s2dy);
-        
-        if (s2dist < 70 && Math.sqrt(mouse.x - s2.x)**2 + Math.sqrt(mouse.y - s2.y)**2 < maxDistance) {
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(41, 151, 255, ${influence * 0.18})`;
-          ctx.lineWidth = 0.4;
-          ctx.moveTo(s.x, s.y);
-          ctx.lineTo(s2.x, s2.y);
-          ctx.stroke();
-        }
-      }
-    }
-
-    ctx.beginPath();
-    ctx.arc(s.x, s.y, currentSize, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${currentOpacity})`;
-    
-    if (glow > 0) {
-      ctx.shadowBlur = glow;
-      ctx.shadowColor = '#2997ff';
-    } else {
-      ctx.shadowBlur = 0;
-    }
-    
-    ctx.fill();
+  stars = [];
+  for (let i = 0; i < numStars; i++) {
+    stars.push(new Star());
   }
 }
 
 function animate() {
-  drawStars();
+  // Efeito de desfoque de movimento limpando o canvas com opacidade
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+  ctx.fillRect(0, 0, width, height);
+
+  // Interpolação suave do Ponto de Fuga para o Mouse
+  centerX += (targetX - centerX) * 0.05;
+  centerY += (targetY - centerY) * 0.05;
+
+  // Interpolação suave da velocidade (Aceleração e Frenagem)
+  speed += (targetSpeed - speed) * 0.05;
+  
+  // Decaimento da velocidade do mouse para retornar ao normal
+  targetSpeed = baseSpeed + (mouseVelocity * 0.8);
+  mouseVelocity *= 0.95; // Vai perdendo força
+
+  // Limite máximo de velocidade para não quebrar visualmente
+  if (targetSpeed > 40) targetSpeed = 40;
+
+  for (let star of stars) {
+    star.update();
+    star.draw();
+  }
+
   requestAnimationFrame(animate);
 }
 
-// Escutando eventos do Cursor de forma otimizada
+// Escutando eventos do Cursor para alterar Ponto de Fuga e Velocidade
 window.addEventListener('mousemove', (e) => {
-  mouse.x = e.clientX;
-  mouse.y = e.clientY;
-});
-window.addEventListener('mouseout', () => {
-  mouse.x = -2000; mouse.y = -2000;
-});
-window.addEventListener('touchstart', (e) => {
-  mouse.x = e.touches[0].clientX; mouse.y = e.touches[0].clientY;
-});
-window.addEventListener('touchmove', (e) => {
-  mouse.x = e.touches[0].clientX; mouse.y = e.touches[0].clientY;
-});
-window.addEventListener('resize', initStars);
+  targetX = e.clientX;
+  targetY = e.clientY;
 
-initStars();
+  if (lastMouseX !== -1) {
+    let dx = e.clientX - lastMouseX;
+    let dy = e.clientY - lastMouseY;
+    let currentVel = Math.sqrt(dx * dx + dy * dy);
+    mouseVelocity += currentVel * 0.1; // Adiciona impulso
+  }
+  
+  lastMouseX = e.clientX;
+  lastMouseY = e.clientY;
+});
+
+// Reseta se o mouse sair da tela
+window.addEventListener('mouseout', () => {
+  targetX = width / 2;
+  targetY = height / 2;
+  mouseVelocity = 0;
+  lastMouseX = -1;
+});
+
+window.addEventListener('resize', init);
+
+init();
 animate();
 
-/* ── INTERSECTION OBSERVER PARA REVEALS SUAVES ── */
+/* ── INTERSECTION OBSERVER PARA REVEALS ── */
 const reveals = document.querySelectorAll('.reveal');
 const revealObs = new IntersectionObserver((entries) => {
   entries.forEach((e) => {
