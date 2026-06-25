@@ -3,75 +3,78 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Infinity — A Velocidade da Luz</title>
+<title>Infinity — A Era do Vidro Líquido</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ─────────────────────────────────────────
-   RESET & VARIÁVEIS PREMIUM
+   RESET & VARIÁVEIS LIQUID GLASS
 ───────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 
 :root {
-  --bg-black: #000000;
-  --panel-dark: rgba(18, 18, 20, 0.6);      /* Mais translúcido para as luzes passarem */
-  --panel-border: rgba(255, 255, 255, 0.08);
+  --bg-black: #020203;
   --text-main: #ffffff;
-  --text-muted: #86868b;
+  --text-muted: #a1a1a6;
   --text-silver: #f5f5f7;
   
   /* Gradiente Apple Tech */
   --accent-blue: #2997ff;
   --accent-purple: #bf5af2;
+  --accent-glow: rgba(41, 151, 255, 0.4);
   
   --container-max: 1040px;
-  --blur-effect: blur(24px) saturate(190%);
+  
+  /* Configurações Liquid Glass */
+  --liquid-blur: blur(32px) saturate(200%);
+  --liquid-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  --liquid-border: rgba(255, 255, 255, 0.1);
+  --liquid-highlight: inset 0 1px 1px rgba(255, 255, 255, 0.15);
 }
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: var(--bg-black);
   color: var(--text-main);
-  line-height: 1.47059;
-  letter-spacing: -0.022em;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
   overflow-x: hidden;
 }
 
 /* ─────────────────────────────────────────
-   EFEITOS DE LUZ AMBIENTE (NOVIDADE)
+   EFEITOS DE LUZ AMBIENTE VOLUMÉTRICA
 ───────────────────────────────────────── */
 .ambient-glow {
   position: fixed;
-  width: 50vw;
-  height: 50vw;
+  width: 60vw; height: 60vw;
   border-radius: 50%;
   pointer-events: none;
-  filter: blur(150px); /* Blur super denso para efeito volumétrico */
-  z-index: -2; /* Fica atrás das estrelas */
-  opacity: 0.4;
-  animation: floatGlow 12s ease-in-out infinite alternate;
+  filter: blur(180px);
+  z-index: -2;
+  opacity: 0.35;
+  animation: floatGlow 15s ease-in-out infinite alternate;
 }
 
 .glow-blue {
   top: -10%; left: -10%;
-  background: radial-gradient(circle, rgba(41,151,255,0.6) 0%, transparent 60%);
+  background: radial-gradient(circle, rgba(41,151,255,0.7) 0%, transparent 60%);
 }
 
 .glow-purple {
   bottom: -20%; right: -10%;
-  background: radial-gradient(circle, rgba(191,90,242,0.5) 0%, transparent 60%);
-  animation-delay: -5s;
+  background: radial-gradient(circle, rgba(191,90,242,0.6) 0%, transparent 60%);
+  animation-delay: -7s;
 }
 
 @keyframes floatGlow {
-  0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
-  100% { transform: translate(50px, 30px) scale(1.1); opacity: 0.6; }
+  0% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+  100% { transform: translate(60px, 40px) scale(1.1); opacity: 0.5; }
 }
 
 /* ─────────────────────────────────────────
-   FONDO DE ESTRELAS 3D
+   CANVAS DE ESTRELAS 3D (WARP DRIVE)
 ───────────────────────────────────────── */
 #star-canvas {
   position: fixed;
@@ -83,359 +86,298 @@ body {
 }
 
 /* ─────────────────────────────────────────
-   NAVBAR (GLASSMORPHISM MÍNIMO)
+   NAVBAR (LIQUID GLASS MÍNIMO)
 ───────────────────────────────────────── */
 nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  height: 52px;
-  background: rgba(0, 0, 0, 0.4); /* Mais transparente para ver as luzes */
-  backdrop-filter: var(--blur-effect);
-  -webkit-backdrop-filter: var(--blur-effect);
-  border-bottom: 1px solid var(--panel-border);
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 56px;
+  background: rgba(2, 2, 3, 0.4);
+  backdrop-filter: var(--liquid-blur); -webkit-backdrop-filter: var(--liquid-blur);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .nav-container {
-  max-width: var(--container-max);
-  margin: 0 auto;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
+  max-width: var(--container-max); margin: 0 auto; height: 100%;
+  display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
 }
 
 .nav-logo {
-  font-size: 19px;
-  font-weight: 600;
-  color: var(--text-main);
-  text-decoration: none;
-  letter-spacing: -0.03em;
+  font-size: 19px; font-weight: 600; color: var(--text-main);
+  text-decoration: none; letter-spacing: -0.03em;
+  display: flex; align-items: center; gap: 6px;
 }
 
 .nav-logo span {
   background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
 
-.nav-links {
-  display: flex;
-  gap: 36px;
-}
-
+.nav-links { display: flex; gap: 36px; }
 .nav-links a {
-  font-size: 13px;
-  color: var(--text-silver);
-  text-decoration: none;
-  transition: color 0.2s ease;
+  font-size: 13px; font-weight: 500; color: var(--text-muted);
+  text-decoration: none; transition: color 0.3s ease;
 }
+.nav-links a:hover { color: var(--text-main); }
 
-.nav-links a:hover { color: var(--accent-blue); }
-
-.nav-cta {
-  background: var(--text-main);
-  color: var(--bg-black);
-  padding: 6px 14px;
+/* ─────────────────────────────────────────
+   BOTÕES EM LIQUID GLASS (A MÁGICA ACONTECE AQUI)
+───────────────────────────────────────── */
+.btn-liquid {
+  background: var(--liquid-bg);
+  backdrop-filter: var(--liquid-blur);
+  -webkit-backdrop-filter: var(--liquid-blur);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    var(--liquid-highlight),
+    0 10px 30px rgba(0, 0, 0, 0.4);
+  color: var(--text-main);
+  padding: 14px 32px;
   border-radius: 980px;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
   text-decoration: none;
-  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.nav-cta:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+/* Efeito de Reflexo (Sheen) passando pelo botão */
+.btn-liquid::before {
+  content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: skewX(-20deg); transition: left 0.6s ease;
+}
+
+.btn-liquid:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    0 15px 40px rgba(41, 151, 255, 0.25);
+}
+
+.btn-liquid:hover::before { left: 200%; }
+
+.btn-liquid.primary {
+  background: linear-gradient(135deg, rgba(41, 151, 255, 0.15), rgba(191, 90, 242, 0.15));
+  border-color: rgba(41, 151, 255, 0.3);
+}
+
+.btn-liquid.primary:hover {
+  background: linear-gradient(135deg, rgba(41, 151, 255, 0.25), rgba(191, 90, 242, 0.25));
+  border-color: rgba(191, 90, 242, 0.5);
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.4),
+    0 20px 50px rgba(191, 90, 242, 0.3);
 }
 
 /* ─────────────────────────────────────────
-   HERO & TIPOGRAFIA
+   HERO E TIPOGRAFIA DE ALTA FIDELIDADE
 ───────────────────────────────────────── */
 .hero {
-  padding-top: 150px;
-  padding-bottom: 60px;
-  text-align: center;
+  padding-top: 160px; padding-bottom: 70px; text-align: center;
 }
 
 .hero-content {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 24px;
+  max-width: 860px; margin: 0 auto; padding: 0 24px;
 }
 
 .hero-badge {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-main);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 6px 16px;
-  border-radius: 980px;
-  display: inline-block;
-  margin-bottom: 24px;
-  letter-spacing: 0.02em;
-  backdrop-filter: blur(10px);
+  font-size: 13px; font-weight: 500; color: var(--text-main);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  padding: 6px 18px; border-radius: 980px;
+  display: inline-block; margin-bottom: 28px; letter-spacing: 0.03em;
 }
 
 .hero h1 {
-  font-size: 68px;
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.035em;
-  margin-bottom: 20px;
+  font-size: 72px; font-weight: 700; line-height: 1.05;
+  letter-spacing: -0.04em; margin-bottom: 24px;
 }
 
 .hero h1 .gradient-title {
-  background: linear-gradient(180deg, #ffffff 10%, rgba(255,255,255,0.4) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0.4) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
 
 .hero p {
-  font-size: 22px;
-  line-height: 1.38;
-  color: var(--text-silver);
-  opacity: 0.8;
-  max-width: 600px;
-  margin: 0 auto 36px;
+  font-size: 22px; line-height: 1.45; font-weight: 400;
+  color: var(--text-muted); max-width: 640px; margin: 0 auto 40px;
+  letter-spacing: -0.01em;
 }
 
 .hero-buttons {
-  display: flex;
-  gap: 24px;
-  justify-content: center;
-  align-items: center;
+  display: flex; gap: 24px; justify-content: center; align-items: center;
 }
-
-.btn-apple-primary {
-  background: var(--text-main);
-  color: var(--bg-black);
-  padding: 14px 28px;
-  border-radius: 980px;
-  font-size: 16px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 15px rgba(255,255,255,0.1);
-}
-
-.btn-apple-primary:hover {
-  transform: scale(1.02);
-  box-shadow: 0 10px 30px rgba(255,255,255,0.3);
-}
-
-.btn-apple-link {
-  color: var(--text-main);
-  font-size: 16px;
-  text-decoration: none;
-  font-weight: 500;
-  display: flex; gap: 6px; align-items: center;
-}
-
-.btn-apple-link:hover { opacity: 0.7; }
 
 /* ─────────────────────────────────────────
-   MOCKUP MACBOOK PRO
+   MOCKUP MACBOOK PRO (ADAPTADO AO LIQUID)
 ───────────────────────────────────────── */
 .macbook-container {
-  max-width: 860px;
-  margin: 60px auto 0;
-  padding: 0 24px;
-  perspective: 1200px;
+  max-width: 900px; margin: 60px auto 0; padding: 0 24px; perspective: 1200px;
 }
 
 .macbook-hardware {
-  transform: rotateX(5deg) scale(0.98);
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: rotateX(6deg) translateY(10px);
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.8));
 }
 
-.macbook-container:hover .macbook-hardware {
-  transform: rotateX(0deg) scale(1);
-}
+.macbook-container:hover .macbook-hardware { transform: rotateX(0deg) translateY(0); }
 
 .macbook-screen {
-  background: #000;
-  border: 12px solid #1c1c1e;
-  border-bottom-width: 14px;
-  border-radius: 16px 16px 0 0;
-  position: relative;
-  aspect-ratio: 16 / 10;
-  box-shadow: 0 40px 80px -15px rgba(0, 0, 0, 0.9), 
-              inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-  overflow: hidden;
+  background: #000; border: 12px solid #141415; border-bottom-width: 14px;
+  border-radius: 18px 18px 0 0; position: relative; aspect-ratio: 16 / 10;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1); overflow: hidden;
 }
 
 .macbook-camera {
-  position: absolute;
-  top: 4px; left: 50%;
-  transform: translateX(-50%);
-  width: 6px; height: 6px;
-  background: #050505;
-  border-radius: 50%;
-  z-index: 10;
-  box-shadow: inset 0 0 2px rgba(255,255,255,0.2);
+  position: absolute; top: 4px; left: 50%; transform: translateX(-50%);
+  width: 6px; height: 6px; background: #050505; border-radius: 50%; z-index: 10;
+  box-shadow: inset 0 -1px 2px rgba(255,255,255,0.15);
 }
 
-.macbook-screen iframe {
-  width: 100%; height: 100%;
-  border: none; display: block;
-}
+.macbook-screen iframe { width: 100%; height: 100%; border: none; display: block; }
 
 .macbook-body {
-  height: 10px;
-  background: linear-gradient(to bottom, #515154 0%, #3a3a3c 100%);
-  border-radius: 0 0 16px 16px;
-  position: relative;
-  border-top: 1px solid rgba(255,255,255,0.2);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+  height: 12px; background: linear-gradient(to bottom, #515154 0%, #2a2a2c 100%);
+  border-radius: 0 0 18px 18px; position: relative;
+  border-top: 1px solid rgba(255,255,255,0.25);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
 }
 
 .macbook-notch {
-  position: absolute;
-  top: 0; left: 50%;
-  transform: translateX(-50%);
-  width: 90px; height: 4px;
-  background: #242426;
-  border-radius: 0 0 6px 6px;
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 100px; height: 5px; background: #1a1a1c; border-radius: 0 0 6px 6px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.5);
 }
 
 /* ─────────────────────────────────────────
-   BENTO GRID FEATURES
+   ASSETS: BENTO GRID EM LIQUID GLASS
 ───────────────────────────────────────── */
-.section-padding { padding: 120px 0; }
+.section-padding { padding: 130px 0; }
 
-.section-title {
-  text-align: center; margin-bottom: 60px; padding: 0 24px;
-}
-
+.section-title { text-align: center; margin-bottom: 70px; padding: 0 24px; }
 .section-title h2 {
-  font-size: 44px; font-weight: 700;
-  letter-spacing: -0.03em; margin-bottom: 16px;
+  font-size: 48px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 16px;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
-
-.section-title p {
-  font-size: 20px; color: var(--text-silver); opacity: 0.8;
-}
+.section-title p { font-size: 21px; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
 
 .bento-grid {
   max-width: var(--container-max); margin: 0 auto;
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 20px; padding: 0 24px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 0 24px;
 }
 
-.bento-card {
-  background: var(--panel-dark);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--panel-border);
-  border-radius: 24px;
-  padding: 44px;
+.liquid-card {
+  background: var(--liquid-bg);
+  backdrop-filter: var(--liquid-blur); -webkit-backdrop-filter: var(--liquid-blur);
+  border: 1px solid var(--liquid-border);
+  box-shadow: var(--liquid-highlight), 0 20px 40px rgba(0,0,0,0.3);
+  border-radius: 28px; padding: 48px;
   display: flex; flex-direction: column; justify-content: space-between;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative; overflow: hidden;
 }
 
-.bento-card:hover {
-  transform: translateY(-4px);
+/* Reflexo sutil nas extremidades do card */
+.liquid-card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 28px; pointer-events: none;
+  background: radial-gradient(circle at top left, rgba(255,255,255,0.06), transparent 50%);
+}
+
+.liquid-card:hover {
+  transform: translateY(-5px);
   border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.2), 0 30px 60px rgba(0,0,0,0.5), 0 0 40px rgba(41, 151, 255, 0.1);
+}
+
+.liquid-card.large { grid-column: span 2; }
+
+.liquid-card h3 {
+  font-size: 24px; font-weight: 600; margin-bottom: 14px; letter-spacing: -0.02em; color: var(--text-silver);
+}
+
+.liquid-card p {
+  font-size: 16px; color: var(--text-muted); line-height: 1.6; font-weight: 400;
+}
+
+.liquid-icon {
+  width: 56px; height: 56px; margin-bottom: 32px;
   background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-}
-
-.bento-card.large { grid-column: span 2; }
-
-.bento-card h3 {
-  font-size: 22px; font-weight: 600;
-  margin-bottom: 12px; letter-spacing: -0.02em;
-}
-
-.bento-card p {
-  font-size: 16px; color: var(--text-muted); line-height: 1.5;
-}
-
-.icon-wrapper {
-  width: 48px; height: 48px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px; margin-bottom: 28px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.2);
+  border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 24px;
 }
 
 /* ─────────────────────────────────────────
-   PLANOS DE PREÇO
+   ASSETS: PRICING EM LIQUID GLASS
 ───────────────────────────────────────── */
 .pricing-grid {
   max-width: var(--container-max); margin: 0 auto;
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 24px; padding: 0 24px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 0 24px;
 }
 
 .price-box {
-  background: var(--panel-dark);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--panel-border);
-  border-radius: 24px; padding: 44px;
-  display: flex; flex-direction: column; transition: all 0.4s ease;
+  background: var(--liquid-bg);
+  backdrop-filter: var(--liquid-blur); -webkit-backdrop-filter: var(--liquid-blur);
+  border: 1px solid var(--liquid-border);
+  box-shadow: var(--liquid-highlight), 0 20px 40px rgba(0,0,0,0.3);
+  border-radius: 28px; padding: 48px;
+  display: flex; flex-direction: column; transition: all 0.5s ease;
+  position: relative;
 }
 
 .price-box.premium {
-  border: 1px solid rgba(191,90,242, 0.5);
-  background: linear-gradient(180deg, rgba(41,151,255,0.05) 0%, rgba(191,90,242,0.05) 100%);
+  border: 1px solid rgba(191,90,242, 0.4);
+  background: linear-gradient(180deg, rgba(41,151,255,0.06) 0%, rgba(191,90,242,0.06) 100%);
+  transform: scale(1.02);
 }
 
-.price-box h3 {
-  font-size: 20px; font-weight: 600; color: var(--text-silver); margin-bottom: 8px;
+.price-box.premium::before { /* Brilho de topo premium */
+  content: ''; position: absolute; top: 0; left: 10%; right: 10%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(191,90,242,0.8), transparent);
 }
 
-.price-box .cost {
-  font-size: 52px; font-weight: 700; letter-spacing: -0.04em; margin-bottom: 28px;
-}
-
-.price-box .cost span { font-size: 22px; color: var(--text-muted); }
+.price-box h3 { font-size: 21px; font-weight: 600; color: var(--text-silver); margin-bottom: 12px; }
+.price-box .cost { font-size: 56px; font-weight: 700; letter-spacing: -0.04em; margin-bottom: 32px; display: flex; align-items: flex-start;}
+.price-box .cost span { font-size: 20px; color: var(--text-muted); margin-top: 10px; margin-right: 4px; font-weight: 500;}
 
 .price-list { list-style: none; margin-bottom: 40px; flex-grow: 1; }
-
 .price-list li {
-  font-size: 15px; color: var(--text-muted); margin-bottom: 14px;
-  display: flex; align-items: center; gap: 10px;
+  font-size: 15px; color: var(--text-muted); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
 }
-
-.price-list li::before { content: "✓"; color: var(--accent-purple); font-weight: bold;}
-
-.price-action {
-  display: block; text-align: center; padding: 14px;
-  border-radius: 12px; font-size: 15px; font-weight: 600;
-  text-decoration: none; transition: all 0.2s;
-}
-
-.price-action.fill { background: var(--text-main); color: var(--bg-black); }
-.price-action.fill:hover { opacity: 0.8; }
-.price-action.stroke { background: rgba(255,255,255,0.05); color: var(--text-main); border: 1px solid var(--panel-border); }
-.price-action.stroke:hover { background: rgba(255,255,255,0.1); }
+.price-list li::before { content: "✦"; color: var(--accent-purple); font-size: 13px; }
 
 /* ─────────────────────────────────────────
    ANIMATION & FOOTER
 ───────────────────────────────────────── */
-.reveal {
-  opacity: 0; transform: translateY(40px);
-  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-}
+.reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
 .reveal.in { opacity: 1; transform: translateY(0); }
 
 footer {
-  background: transparent; padding: 60px 0;
-  border-top: 1px solid var(--panel-border);
+  padding: 60px 0; border-top: 1px solid rgba(255,255,255,0.05);
   color: var(--text-muted); font-size: 13px; text-align: center;
+  background: rgba(0,0,0,0.5); backdrop-filter: blur(10px);
 }
 
 @media (max-width: 768px) {
-  .hero h1 { font-size: 42px; }
+  .hero h1 { font-size: 48px; }
   .bento-grid, .pricing-grid { grid-template-columns: 1fr; }
-  .bento-card.large { grid-column: span 1; }
+  .liquid-card.large { grid-column: span 1; }
   .nav-links { display: none; }
+  .price-box.premium { transform: scale(1); }
 }
 </style>
 </head>
@@ -443,28 +385,27 @@ footer {
 
 <div class="ambient-glow glow-blue"></div>
 <div class="ambient-glow glow-purple"></div>
-
 <canvas id="star-canvas"></canvas>
 
 <nav id="navbar">
   <div class="nav-container">
     <a href="#" class="nav-logo">Infinity<span>∞</span></a>
     <div class="nav-links">
-      <a href="#tecnologia">Recursos</a>
-      <a href="#planos">Preços</a>
+      <a href="#tecnologia">Arquitetura</a>
+      <a href="#planos">Licenças</a>
     </div>
-    <a href="#planos" class="nav-cta">Adquirir</a>
+    <a href="#planos" class="btn-liquid" style="padding: 6px 16px; font-size: 12px;">Acesso Antecipado</a>
   </div>
 </nav>
 
 <section class="hero">
   <div class="hero-content reveal">
-    <span class="hero-badge">Infinity Motor 3.0</span>
-    <h1>Alcance o impossível.<br><span class="gradient-title">Na velocidade da luz.</span></h1>
-    <p>A arquitetura definitiva para injeção de créditos no Lovable. Escala instantânea guiada pela sua necessidade de produção.</p>
+    <span class="hero-badge">Motor de Injeção v3.0</span>
+    <h1>Poder absoluto no Lovable.<br><span class="gradient-title">Em escala ilimitada.</span></h1>
+    <p>O ecossistema definitivo para injeção nativa de créditos. Acelere seu workspace de forma invisível, segura e com resposta em milissegundos.</p>
     <div class="hero-buttons">
-      <a href="#planos" class="btn-apple-primary">Ver Planos</a>
-      <a href="#tecnologia" class="btn-apple-link">Ver Engenharia →</a>
+      <a href="#planos" class="btn-liquid primary">Escolher Licença</a>
+      <a href="#tecnologia" class="btn-liquid">Visualizar Motor</a>
     </div>
   </div>
 
@@ -483,118 +424,112 @@ footer {
 
 <section class="section-padding" id="tecnologia">
   <div class="section-title reveal">
-    <h2>Performance além do limite.</h2>
-    <p>Segurança integrada com entrega em tempo real.</p>
+    <h2>Engenharia transparente.</h2>
+    <p>O design Liquid Glass reflete nossa filosofia: interface limpa, operação invisível e potência exposta.</p>
   </div>
   
   <div class="bento-grid">
-    <div class="bento-card large reveal">
-      <div class="icon-wrapper">🛡️</div>
-      <h3>Segurança Baseada em Hardware</h3>
-      <p>Desenvolvemos um sistema que simula interações orgânicas, garantindo 100% de integridade para seus projetos. Sua conta Lovable nunca esteve tão blindada.</p>
+    <div class="liquid-card large reveal">
+      <div class="liquid-icon">🛡️</div>
+      <h3>Segurança Nível Kernel</h3>
+      <p>Desenvolvemos um sistema que opera em harmonia com a API do Lovable. Nossa injeção ocorre de forma orgânica, sem acionar flags de automação externa ou comprometer a integridade dos seus dados corporativos.</p>
     </div>
-    <div class="bento-card reveal">
-      <div class="icon-wrapper">⚡</div>
-      <h3>Velocidade Warp</h3>
-      <p>Esqueça o tempo de espera. Nossos clusters distribuídos garantem a injeção em frações de segundo.</p>
+    <div class="liquid-card reveal">
+      <div class="liquid-icon">⚡</div>
+      <h3>Latência Zero</h3>
+      <p>Clusters distribuídos asseguram que a recarga de créditos aconteça em frações de segundo, acompanhando o seu raciocínio.</p>
     </div>
-    <div class="bento-card reveal">
-      <div class="icon-wrapper">👁️</div>
-      <h3>Rastreabilidade Zero</h3>
-      <p>Operamos nas sombras da API do Lovable, sem acionar flags de bots externos.</p>
+    <div class="liquid-card reveal">
+      <div class="liquid-icon">👁️</div>
+      <h3>Design Invisível</h3>
+      <p>Integração que não polui seu ambiente. O Infinity opera nos bastidores, mantendo o foco apenas no seu desenvolvimento.</p>
     </div>
-    <div class="bento-card large reveal">
-      <div class="icon-wrapper">♾️</div>
-      <h3>Validade Eterna</h3>
-      <p>Os créditos injetados entram como pacote vitalício. Construa seu império digital no seu próprio ritmo, sem pressões de expiração mensal.</p>
+    <div class="liquid-card large reveal">
+      <div class="liquid-icon">♾️</div>
+      <h3>Resiliência Máxima</h3>
+      <p>Os ativos injetados são seus vitaliciamente. Sem assinaturas recorrentes forçadas. Adquira a potência necessária hoje e utilize ao longo de anos.</p>
     </div>
   </div>
 </section>
 
 <section class="section-padding" id="planos">
   <div class="section-title reveal">
-    <h2>Escolha seu vetor.</h2>
-    <p>Acelere sem contratos complexos. Compra avulsa, entrega imediata.</p>
+    <h2>Escalabilidade por demanda.</h2>
+    <p>Planos diretos em infraestrutura premium. Feitos para impulsionar projetos reais.</p>
   </div>
 
   <div class="pricing-grid">
     <div class="price-box reveal">
-      <h3>Starter</h3>
+      <h3>Licença Starter</h3>
       <div class="cost"><span>R$</span>19,90</div>
       <ul class="price-list">
-        <li>500 Créditos Avulsos</li>
-        <li>Entrega Base</li>
-        <li>Suporte Padrão</li>
+        <li>500 Injeções de Crédito</li>
+        <li>Latência Padrão</li>
+        <li>Protocolo de Segurança Base</li>
       </ul>
-      <a href="#" class="price-action stroke">Escolher Pacote</a>
+      <a href="#" class="btn-liquid" style="width: 100%; margin-top: auto;">Adquirir Starter</a>
     </div>
 
     <div class="price-box premium reveal">
-      <h3>Profissional</h3>
+      <h3>Licença Profissional</h3>
       <div class="cost"><span>R$</span>49,90</div>
       <ul class="price-list">
-        <li>1.500 Créditos Avulsos</li>
-        <li>Prioridade Warp (Instantâneo)</li>
-        <li>Criptografia Dupla</li>
-        <li>Suporte Prioritário</li>
+        <li>1.500 Injeções de Crédito</li>
+        <li>Latência Warp (Instantânea)</li>
+        <li>Criptografia de Camada Dupla</li>
+        <li>Atendimento Prioritário</li>
       </ul>
-      <a href="#" class="price-action fill">Escolher Profissional</a>
+      <a href="#" class="btn-liquid primary" style="width: 100%; margin-top: auto;">Adquirir Profissional</a>
     </div>
 
     <div class="price-box reveal">
-      <h3>Studio</h3>
+      <h3>Licença Studio</h3>
       <div class="cost"><span>R$</span>139,90</div>
       <ul class="price-list">
-        <li>5.000 Créditos Avulsos</li>
-        <li>Cluster Dedicado</li>
-        <li>Modo Stealth Extremo</li>
+        <li>5.000 Injeções de Crédito</li>
+        <li>Servidor Dedicado</li>
+        <li>Blindagem de Conta Nível 3</li>
       </ul>
-      <a href="#" class="price-action stroke">Escolher Studio</a>
+      <a href="#" class="btn-liquid" style="width: 100%; margin-top: auto;">Adquirir Studio</a>
     </div>
   </div>
 </section>
 
 <footer>
   <div style="max-width: var(--container-max); margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center;">
-    <div>© 2026 Infinity Technologies. Todos os direitos reservados.</div>
+    <div>© 2026 Infinity Engine. Design concebido para o futuro.</div>
     <div class="nav-logo" style="font-size: 15px;">Infinity<span>∞</span></div>
   </div>
 </footer>
 
 <script>
 /* ─────────────────────────────────────────
-   WARP DRIVE: EFEITO VELOCIDADE DA LUZ 3D
+   MOTOR WARP DRIVE: RENDEREZAÇÃO 3D
 ───────────────────────────────────────── */
 const canvas = document.getElementById('star-canvas');
 const ctx = canvas.getContext('2d');
 
 let width, height;
 let stars = [];
-const numStars = 600; // Maior densidade de estrelas
+const numStars = 600;
 
-// Controles de Ponto de Fuga (Centro da Tela / Mouse)
 let centerX, centerY;
 let targetX, targetY;
 
-// Controle de Velocidade Dinâmica
 let baseSpeed = 1.5;
 let speed = baseSpeed;
 let targetSpeed = baseSpeed;
 
-// Variáveis para detectar velocidade do mouse
 let lastMouseX = -1;
 let lastMouseY = -1;
 let mouseVelocity = 0;
 
 class Star {
-  constructor() {
-    this.reset(true);
-  }
+  constructor() { this.reset(true); }
 
   reset(initial = false) {
-    this.x = (Math.random() - 0.5) * width * 3; // Espalha horizontalmente
-    this.y = (Math.random() - 0.5) * height * 3; // Espalha verticalmente
-    // Se for inicial, randomiza o Z. Se resetou por ter passado, nasce longe.
+    this.x = (Math.random() - 0.5) * width * 3;
+    this.y = (Math.random() - 0.5) * height * 3;
     this.z = initial ? Math.random() * width : width; 
     this.pz = this.z;
     this.colorOpacity = Math.random() * 0.6 + 0.2;
@@ -603,25 +538,16 @@ class Star {
   update() {
     this.pz = this.z;
     this.z -= speed;
-
-    if (this.z <= 0) {
-      this.reset();
-    }
+    if (this.z <= 0) this.reset();
   }
 
   draw() {
-    // Projeção 3D Clássica
     let fov = 300;
-    
-    // Posição Atual
     let sx = (this.x / this.z) * fov + centerX;
     let sy = (this.y / this.z) * fov + centerY;
-
-    // Posição Passada (para criar o rastro da velocidade)
     let px = (this.x / this.pz) * fov + centerX;
     let py = (this.y / this.pz) * fov + centerY;
 
-    // A cor muda do centro (branco) para o azul/roxo nas bordas
     let distFromCenter = Math.sqrt((sx - centerX)**2 + (sy - centerY)**2);
     let colorRatio = Math.min(1, distFromCenter / (width/2));
     
@@ -630,7 +556,6 @@ class Star {
     let b = 255;
 
     ctx.beginPath();
-    // Espessura da estrela aumenta conforme chega perto
     ctx.lineWidth = Math.max(0.5, (1 - this.z / width) * 3);
     ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${this.colorOpacity})`;
     ctx.moveTo(px, py);
@@ -644,30 +569,22 @@ function init() {
   height = canvas.height = window.innerHeight;
   centerX = targetX = width / 2;
   centerY = targetY = height / 2;
-  
   stars = [];
-  for (let i = 0; i < numStars; i++) {
-    stars.push(new Star());
-  }
+  for (let i = 0; i < numStars; i++) stars.push(new Star());
 }
 
 function animate() {
-  // Efeito de desfoque de movimento limpando o canvas com opacidade
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+  ctx.fillStyle = 'rgba(2, 2, 3, 0.35)'; // Corrigido para harmonizar com o bg-black
   ctx.fillRect(0, 0, width, height);
 
-  // Interpolação suave do Ponto de Fuga para o Mouse
   centerX += (targetX - centerX) * 0.05;
   centerY += (targetY - centerY) * 0.05;
 
-  // Interpolação suave da velocidade (Aceleração e Frenagem)
   speed += (targetSpeed - speed) * 0.05;
   
-  // Decaimento da velocidade do mouse para retornar ao normal
   targetSpeed = baseSpeed + (mouseVelocity * 0.8);
-  mouseVelocity *= 0.95; // Vai perdendo força
+  mouseVelocity *= 0.95;
 
-  // Limite máximo de velocidade para não quebrar visualmente
   if (targetSpeed > 40) targetSpeed = 40;
 
   for (let star of stars) {
@@ -678,36 +595,27 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
-// Escutando eventos do Cursor para alterar Ponto de Fuga e Velocidade
 window.addEventListener('mousemove', (e) => {
-  targetX = e.clientX;
-  targetY = e.clientY;
-
+  targetX = e.clientX; targetY = e.clientY;
   if (lastMouseX !== -1) {
     let dx = e.clientX - lastMouseX;
     let dy = e.clientY - lastMouseY;
     let currentVel = Math.sqrt(dx * dx + dy * dy);
-    mouseVelocity += currentVel * 0.1; // Adiciona impulso
+    mouseVelocity += currentVel * 0.1;
   }
-  
-  lastMouseX = e.clientX;
-  lastMouseY = e.clientY;
+  lastMouseX = e.clientX; lastMouseY = e.clientY;
 });
 
-// Reseta se o mouse sair da tela
 window.addEventListener('mouseout', () => {
-  targetX = width / 2;
-  targetY = height / 2;
-  mouseVelocity = 0;
-  lastMouseX = -1;
+  targetX = width / 2; targetY = height / 2;
+  mouseVelocity = 0; lastMouseX = -1;
 });
 
 window.addEventListener('resize', init);
 
-init();
-animate();
+init(); animate();
 
-/* ── INTERSECTION OBSERVER PARA REVEALS ── */
+/* ── INTERSECTION OBSERVER ── */
 const reveals = document.querySelectorAll('.reveal');
 const revealObs = new IntersectionObserver((entries) => {
   entries.forEach((e) => {
