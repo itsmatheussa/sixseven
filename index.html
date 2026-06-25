@@ -3,48 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Infinity — A Escalabilidade que Você Merece</title>
+<title>Infinity — Avançado, Fluido e Escalável</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ─────────────────────────────────────────
-   RESET & BASE
+   RESET & VARIÁVEIS PREMIUM
 ───────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 
 :root {
-  --black:   #000000;
-  --white:   #ffffff;
-  --gray-900: #151516; /* Cinza super profundo estilo Apple */
-  --gray-800: #1d1d1f;
-  --gray-700: #86868b;
-  --gray-600: #a1a1a6;
+  --bg-black: #000000;
+  --panel-dark: #09090b;      /* Preto profundo estilo Obsidian */
+  --panel-card: #121214;      /* Cinza Apple Pro */
+  --panel-border: rgba(255, 255, 255, 0.06);
+  --text-main: #ffffff;
+  --text-muted: #86868b;
+  --text-silver: #f5f5f7;
   
-  /* Apple Blue Premium */
-  --accent: #2997ff;
-  --accent-hover: #147ce5;
-  --accent-glow: rgba(41, 151, 255, 0.4);
+  /* Gradiente Apple Tech */
+  --accent-blue: #2997ff;
+  --accent-purple: #bf5af2;
   
-  /* Layout */
   --container-max: 1040px;
-  --border-radius: 20px;
-  --blur: blur(24px) saturate(200%);
+  --blur-effect: blur(20px) saturate(190%);
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: var(--black);
-  color: var(--white);
-  line-height: 1.5;
-  font-weight: 400;
-  letter-spacing: -0.015em;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-black);
+  color: var(--text-main);
+  line-height: 1.47059;
+  letter-spacing: -0.022em;
   overflow-x: hidden;
 }
 
 /* ─────────────────────────────────────────
-   STAR BACKGROUND (CANVAS)
+   FONDO DE ESTRELAS AVANÇADO
 ───────────────────────────────────────── */
 #star-canvas {
   position: fixed;
@@ -55,18 +52,18 @@ body {
 }
 
 /* ─────────────────────────────────────────
-   NAVBAR (GLASSMORPHISM)
+   NAVBAR (GLASSMORPHISM MÍNIMO)
 ───────────────────────────────────────── */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  height: 48px;
+  height: 52px;
   background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: var(--blur);
-  -webkit-backdrop-filter: var(--blur);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: var(--blur-effect);
+  -webkit-backdrop-filter: var(--blur-effect);
+  border-bottom: 1px solid var(--panel-border);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .nav-container {
@@ -80,36 +77,38 @@ nav {
 }
 
 .nav-logo {
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 600;
-  color: var(--white);
+  color: var(--text-main);
   text-decoration: none;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 .nav-logo span {
-  color: var(--accent);
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .nav-links {
   display: flex;
-  gap: 32px;
+  gap: 36px;
 }
 
 .nav-links a {
   font-size: 13px;
-  color: var(--gray-600);
+  color: var(--text-muted);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .nav-links a:hover {
-  color: var(--white);
+  color: var(--text-main);
 }
 
 .nav-cta {
-  background: var(--white);
-  color: var(--black);
+  background: var(--text-main);
+  color: var(--bg-black);
   padding: 6px 14px;
   border-radius: 980px;
   font-size: 12px;
@@ -119,180 +118,190 @@ nav {
 }
 
 .nav-cta:hover {
-  transform: scale(1.03);
-  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
 }
 
 /* ─────────────────────────────────────────
-   HERO SECTION
+   HERO & TIPOGRAFIA
 ───────────────────────────────────────── */
 .hero {
-  padding-top: 160px;
-  padding-bottom: 100px;
+  padding-top: 140px;
+  padding-bottom: 60px;
   text-align: center;
 }
 
 .hero-content {
-  max-width: 860px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
-.hero-eyebrow {
-  font-size: 14px;
+.hero-badge {
+  font-size: 13px;
   font-weight: 500;
-  color: var(--accent);
-  margin-bottom: 16px;
-  display: inline-block;
+  color: var(--accent-blue);
+  background: rgba(41, 151, 255, 0.08);
+  border: 1px solid rgba(41, 151, 255, 0.15);
   padding: 6px 16px;
   border-radius: 980px;
-  background: rgba(41, 151, 255, 0.1);
-  border: 1px solid rgba(41, 151, 255, 0.2);
+  display: inline-block;
+  margin-bottom: 24px;
+  letter-spacing: 0.02em;
 }
 
 .hero h1 {
-  font-size: 72px;
-  line-height: 1.05;
+  font-size: 64px;
   font-weight: 700;
-  letter-spacing: -0.04em;
-  margin-bottom: 24px;
-  color: var(--white);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  margin-bottom: 20px;
 }
 
-.hero h1 .gradient-text {
-  background: linear-gradient(135deg, #fff 0%, #a1a1a6 100%);
+.hero h1 .gradient-title {
+  background: linear-gradient(180deg, #ffffff 30%, #a1a1a6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .hero p {
-  font-size: 24px;
-  line-height: 1.4;
-  font-weight: 400;
-  color: var(--gray-700);
-  margin-bottom: 40px;
-  max-width: 680px;
-  margin-inline: auto;
+  font-size: 22px;
+  line-height: 1.38;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto 36px;
 }
 
-.hero-actions {
+.hero-buttons {
   display: flex;
-  gap: 20px;
+  gap: 24px;
   justify-content: center;
   align-items: center;
 }
 
-.btn-primary {
-  background: var(--accent);
+.btn-apple-primary {
+  background: var(--accent-blue);
   color: white;
-  padding: 14px 28px;
+  padding: 12px 26px;
   border-radius: 980px;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 500;
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 24px var(--accent-glow);
 }
 
-.btn-primary:hover {
-  background: var(--accent-hover);
-  transform: scale(1.02);
-  box-shadow: 0 8px 32px rgba(41, 151, 255, 0.6);
+.btn-apple-primary:hover {
+  background: #147ce5;
+  box-shadow: 0 10px 30px rgba(41, 151, 255, 0.35);
 }
 
-.btn-link {
-  color: var(--white);
-  font-size: 17px;
-  font-weight: 500;
+.btn-apple-link {
+  color: var(--accent-blue);
+  font-size: 16px;
   text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: color 0.2s;
+  font-weight: 500;
 }
 
-.btn-link:hover {
-  color: var(--accent);
+.btn-apple-link:hover {
+  text-decoration: underline;
 }
 
 /* ─────────────────────────────────────────
-   PRODUCT SHOWCASE (MOCKUP)
+   MOCKUP MACBOOK PRO REALÍSTICO COM VÍDEO
 ───────────────────────────────────────── */
-.product-showcase {
-  max-width: 1040px;
+.macbook-container {
+  max-width: 860px;
   margin: 60px auto 0;
   padding: 0 24px;
   perspective: 1200px;
 }
 
-.macbook-frame {
-  background: var(--gray-900);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  padding: 16px;
-  box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  transform: rotateX(8deg) translateY(20px);
+.macbook-hardware {
+  transform: rotateX(4deg);
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.product-showcase:hover .macbook-frame {
-  transform: rotateX(0deg) translateY(0);
+.macbook-container:hover .macbook-hardware {
+  transform: rotateX(0deg);
 }
 
-.browser-mockup {
+/* Tela do Notebook */
+.macbook-screen {
   background: #000;
-  border-radius: 12px;
+  border: 12px solid #1c1c1e; /* Moldura preta fosca */
+  border-bottom-width: 14px;
+  border-radius: 16px 16px 0 0;
+  position: relative;
+  aspect-ratio: 16 / 10;
+  box-shadow: 0 40px 80px -15px rgba(0, 0, 0, 0.9), 
+              inset 0 0 0 1px rgba(255, 255, 255, 0.08);
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.browser-header {
-  height: 38px;
-  background: #1c1c1e;
-  display: flex;
-  align-items: center;
-  padding: 0 16px;
-  gap: 8px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+/* Câmera/Notch sutil superior */
+.macbook-camera {
+  position: absolute;
+  top: 4px; left: 50%;
+  transform: translateX(-50%);
+  width: 6px; height: 6px;
+  background: #050505;
+  border-radius: 50%;
+  z-index: 10;
+  box-shadow: inset 0 0 2px rgba(255,255,255,0.2);
 }
 
-.dot { width: 12px; height: 12px; border-radius: 50%; }
-.dot-red { background: #ff5f57; }
-.dot-yellow { background: #febc2e; }
-.dot-green { background: #28c840; }
+/* Conteúdo interno da tela (Vídeo) */
+.macbook-screen iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
 
-.browser-content {
-  padding: 48px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  background: radial-gradient(circle at top right, #111 0%, #000 100%);
+/* Corpo / Base de Alumínio inferior */
+.macbook-body {
+  height: 10px;
+  background: linear-gradient(to bottom, #515154 0%, #3a3a3c 100%); /* Space Gray */
+  border-radius: 0 0 16px 16px;
+  position: relative;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.7);
+}
+
+/* Entalhe frontal para abrir a tampa */
+.macbook-notch {
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 4px;
+  background: #242426;
+  border-radius: 0 0 6px 6px;
 }
 
 /* ─────────────────────────────────────────
    BENTO GRID FEATURES
 ───────────────────────────────────────── */
-.section {
-  padding: 120px 0;
+.section-padding {
+  padding: 100px 0;
 }
 
-.section-header {
+.section-title {
   text-align: center;
-  max-width: 680px;
-  margin: 0 auto 64px;
+  margin-bottom: 60px;
   padding: 0 24px;
 }
 
-.section-header h2 {
-  font-size: 48px;
+.section-title h2 {
+  font-size: 44px;
   font-weight: 700;
   letter-spacing: -0.03em;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
-.section-header p {
-  font-size: 21px;
-  color: var(--gray-700);
+.section-title p {
+  font-size: 20px;
+  color: var(--text-muted);
 }
 
 .bento-grid {
@@ -300,63 +309,56 @@ nav {
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 20px;
   padding: 0 24px;
 }
 
-.bento-item {
-  background: var(--gray-900);
-  border-radius: var(--border-radius);
-  padding: 48px 40px;
+.bento-card {
+  background: var(--panel-dark);
+  border: 1px solid var(--panel-border);
+  border-radius: 20px;
+  padding: 44px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
 }
 
-.bento-item:hover {
-  transform: translateY(-4px);
-  border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+.bento-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
 }
 
-.bento-item.large {
+.bento-card.large {
   grid-column: span 2;
-  background: radial-gradient(circle at bottom right, #1a1a1c 0%, var(--gray-900) 100%);
+  background: radial-gradient(circle at bottom right, #131316 0%, var(--panel-dark) 100%);
 }
 
-.bento-item h3 {
-  font-size: 24px;
+.bento-card h3 {
+  font-size: 22px;
   font-weight: 600;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   letter-spacing: -0.02em;
 }
 
-.bento-item p {
-  font-size: 17px;
-  color: var(--gray-600);
-  line-height: 1.5;
+.bento-card p {
+  font-size: 16px;
+  color: var(--text-muted);
 }
 
-.icon-box {
-  width: 56px;
-  height: 56px;
+.icon-wrapper {
+  width: 48px; height: 48px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 32px;
-  font-size: 24px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; margin-bottom: 28px;
 }
 
 /* ─────────────────────────────────────────
-   PRICING
+   PLANOS DE PREÇO MÍNIMOS
 ───────────────────────────────────────── */
 .pricing-grid {
   max-width: var(--container-max);
@@ -367,102 +369,82 @@ nav {
   padding: 0 24px;
 }
 
-.price-card {
-  background: var(--gray-900);
-  border-radius: var(--border-radius);
-  padding: 48px 40px;
-  border: 1px solid rgba(255, 255, 255, 0.04);
+.price-box {
+  background: var(--panel-dark);
+  border: 1px solid var(--panel-border);
+  border-radius: 20px;
+  padding: 44px;
   display: flex;
   flex-direction: column;
   transition: all 0.4s ease;
 }
 
-.price-card.featured {
-  background: linear-gradient(180deg, rgba(41, 151, 255, 0.05) 0%, var(--gray-900) 100%);
-  border: 1px solid rgba(41, 151, 255, 0.3);
-  transform: scale(1.02);
+.price-box.premium {
+  border: 1px solid rgba(41, 151, 255, 0.4);
+  background: linear-gradient(180deg, rgba(41,151,255,0.03) 0%, var(--panel-dark) 100%);
 }
 
-.price-card h3 {
-  font-size: 21px;
+.price-box h3 {
+  font-size: 20px;
   font-weight: 600;
-  color: var(--white);
-  margin-bottom: 12px;
+  color: var(--text-silver);
+  margin-bottom: 8px;
 }
 
-.price-amount {
-  font-size: 56px;
+.price-box .cost {
+  font-size: 52px;
   font-weight: 700;
   letter-spacing: -0.04em;
-  margin-bottom: 32px;
-  display: flex;
-  align-items: flex-start;
+  margin-bottom: 28px;
 }
 
-.price-amount span {
-  font-size: 24px;
-  font-weight: 500;
-  color: var(--gray-700);
-  margin-top: 8px;
-  margin-right: 4px;
+.price-box .cost span {
+  font-size: 22px;
+  color: var(--text-muted);
 }
 
-.price-features {
+.price-list {
   list-style: none;
-  margin-bottom: 48px;
+  margin-bottom: 40px;
   flex-grow: 1;
 }
 
-.price-features li {
-  font-size: 16px;
-  color: var(--gray-600);
-  margin-bottom: 16px;
+.price-list li {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
-.price-features li::before {
-  content: "✦";
-  color: var(--accent);
-  font-size: 14px;
+.price-list li::before {
+  content: "→";
+  color: var(--accent-blue);
 }
 
-.price-btn {
+.price-action {
   display: block;
   text-align: center;
-  padding: 14px;
-  border-radius: 12px;
-  font-size: 17px;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 15px;
   font-weight: 500;
   text-decoration: none;
   transition: all 0.2s;
 }
 
-.price-btn.primary {
-  background: var(--white);
-  color: var(--black);
-}
-
-.price-btn.primary:hover {
-  background: var(--gray-600);
-}
-
-.price-btn.secondary {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--white);
-}
-
-.price-btn.secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
+.price-action.fill { background: var(--text-main); color: var(--bg-black); }
+.price-action.fill:hover { background: #e8e8ed; }
+.price-action.stroke { background: rgba(255,255,255,0.04); color: var(--text-main); border: 1px solid var(--panel-border); }
+.price-action.stroke:hover { background: rgba(255,255,255,0.08); }
 
 /* ─────────────────────────────────────────
-   ANIMATIONS
+   ANIMATION & FOOTER
 ───────────────────────────────────────── */
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(30px);
   transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.in {
@@ -470,17 +452,22 @@ nav {
   transform: translateY(0);
 }
 
+footer {
+  background: #000;
+  padding: 50px 0;
+  border-top: 1px solid var(--panel-border);
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
 /* ─────────────────────────────────────────
-   RESPONSIVE
+   RESPONSIVIDADE
 ───────────────────────────────────────── */
 @media (max-width: 768px) {
-  .hero h1 { font-size: 48px; }
-  .hero p { font-size: 19px; }
+  .hero h1 { font-size: 42px; }
   .bento-grid, .pricing-grid { grid-template-columns: 1fr; }
-  .bento-item.large { grid-column: span 1; }
-  .browser-content { grid-template-columns: 1fr; }
+  .bento-card.large { grid-column: span 1; }
   .nav-links { display: none; }
-  .price-card.featured { transform: scale(1); }
 }
 </style>
 </head>
@@ -492,150 +479,132 @@ nav {
   <div class="nav-container">
     <a href="#" class="nav-logo">Infinity<span>∞</span></a>
     <div class="nav-links">
-      <a href="#features">Recursos</a>
-      <a href="#precos">Preços</a>
+      <a href="#tecnologia">Recursos</a>
+      <a href="#planos">Preços</a>
     </div>
-    <a href="#precos" class="nav-cta">Comprar Agora</a>
+    <a href="#planos" class="nav-cta">Adquirir</a>
   </div>
 </nav>
 
 <section class="hero">
   <div class="hero-content reveal">
-    <span class="hero-eyebrow">Apresentando Infinity 2.0</span>
-    <h1>O poder da escalabilidade.<br><span class="gradient-text">Profissional e direto.</span></h1>
-    <p>Acelere sua produção no Lovable com segurança de ponta. Adicione créditos de forma instantânea ao seu workspace com uma engenharia indetectável.</p>
-    <div class="hero-actions">
-      <a href="#precos" class="btn-primary">Ver Planos</a>
-      <a href="#features" class="btn-link">Descubra a tecnologia <span>→</span></a>
+    <span class="hero-badge">Infinity Pro 2.0</span>
+    <h1>Sua produção Lovable.<br><span class="gradient-title">Em escala absoluta.</span></h1>
+    <p>A arquitetura definitiva para injeção segura e inteligente de créditos está aqui. Maximize seus fluxos de trabalho instantaneamente.</p>
+    <div class="hero-buttons">
+      <a href="#planos" class="btn-apple-primary">Ver Planos</a>
+      <a href="#tecnologia" class="btn-apple-link">Conhecer Engenharia →</a>
     </div>
   </div>
 
-  <div class="product-showcase reveal">
-    <div class="macbook-frame">
-      <div class="browser-mockup">
-        <div class="browser-header">
-          <div class="dot dot-red"></div>
-          <div class="dot dot-yellow"></div>
-          <div class="dot dot-green"></div>
-        </div>
-        <div class="browser-content">
-          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 32px; border-radius: 16px;">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 24px;">
-              <span style="font-weight: 600; font-size: 14px; letter-spacing: 1px;">INFINITY ∞</span>
-              <span style="background: rgba(40, 200, 64, 0.15); color: #28c840; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 600;">SISTEMA ONLINE</span>
-            </div>
-            <div style="font-size: 13px; color: var(--gray-700);">Créditos Restantes</div>
-            <div id="credit-num" style="font-size: 48px; font-weight: 700; color: white; margin-bottom: 16px; letter-spacing: -1px;">1.248</div>
-            <div style="height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden;">
-              <div style="height: 100%; background: var(--accent); width: 70%; box-shadow: 0 0 10px var(--accent);"></div>
-            </div>
-          </div>
-          <div style="display: flex; flex-direction: column; justify-content: center;">
-            <div style="font-weight: 600; font-size: 14px; margin-bottom: 24px; color: var(--gray-600);">Registro de Injeção</div>
-            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
-              <div style="width: 32px; height: 32px; background: rgba(41, 151, 255, 0.1); border-radius: 8px; display: grid; place-items: center; color: var(--accent);">✦</div>
-              <div style="flex-grow: 1; font-size: 14px;">Módulo Core Ativado</div>
-              <div style="color: var(--gray-700); font-size: 12px;">Agora</div>
-            </div>
-            <div style="display: flex; align-items: center; gap: 16px;">
-              <div style="width: 32px; height: 32px; background: rgba(40, 200, 64, 0.1); border-radius: 8px; display: grid; place-items: center; color: #28c840;">✓</div>
-              <div style="flex-grow: 1; font-size: 14px;">Recarga Efetuada</div>
-              <div style="color: #28c840; font-size: 14px; font-weight: 600;">+1.500</div>
-            </div>
-          </div>
-        </div>
+  <div class="macbook-container reveal">
+    <div class="macbook-hardware">
+      <div class="macbook-screen">
+        <div class="macbook-camera"></div>
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&rel=0&showinfo=0" allowfullscreen></iframe>
+      </div>
+      <div class="macbook-body">
+        <div class="macbook-notch"></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section" id="features">
-  <div class="section-header reveal">
-    <h2>Engenharia de ponta.<br>Design invisível.</h2>
-    <p>Construído nativamente para o ecossistema Lovable, garantindo máxima eficiência sem deixar rastros.</p>
+<section class="section-padding" id="tecnologia">
+  <div class="section-title reveal">
+    <h2>Construído para profissionais.</h2>
+    <p>Segurança inteligente integrada de ponta a ponta na sua conta Lovable.</p>
   </div>
   
   <div class="bento-grid">
-    <div class="bento-item large reveal">
-      <div class="icon-box">🛡️</div>
-      <h3>Segurança Nível Kernel</h3>
-      <p>Esqueça scripts maliciosos ou farms de cliques. Nossa arquitetura se integra diretamente à sua sessão, garantindo 100% de privacidade e zero risco de banimento da sua conta principal.</p>
+    <div class="bento-card large reveal">
+      <div>
+        <div class="icon-wrapper">🛡️</div>
+        <h3>Injeção Nativa Segura</h3>
+        <p>Desenvolvemos um sistema indetectável que conversa diretamente com os pacotes internos do workspace. Zero uso de farms automatizadas ou bots externos comprometidos.</p>
+      </div>
     </div>
-    <div class="bento-item reveal">
-      <div class="icon-box">⚡</div>
-      <h3>Velocidade Absoluta</h3>
-      <p>Seus créditos são injetados em milissegundos. Sem filas de espera, sem carregamentos longos.</p>
+    <div class="bento-card reveal">
+      <div>
+        <div class="icon-wrapper">⚡</div>
+        <h3>Entrega Instantânea</h3>
+        <p>Processamento distribuído em nuvem que aloca seus créditos na conta em menos de um segundo.</p>
+      </div>
     </div>
-    <div class="bento-item reveal">
-      <div class="icon-box">♾️</div>
-      <h3>Créditos Eternos</h3>
-      <p>Sem pegadinhas. Uma vez creditados na sua conta, eles não possuem data de expiração.</p>
+    <div class="bento-card reveal">
+      <div>
+        <div class="icon-wrapper">👁️</div>
+        <h3>Total Discrição</h3>
+        <p>A privacidade do código e dos seus ambientes de desenvolvimento permanecem 100% intactos.</p>
+      </div>
     </div>
-    <div class="bento-item large reveal">
-      <div class="icon-box">🌍</div>
-      <h3>Workflow Global</h3>
-      <p>Projetado para freelancers e grandes agências. Não importa o tamanho do seu projeto no Lovable, nossa tecnologia fornece os recursos computacionais necessários sob demanda.</p>
+    <div class="bento-card large reveal">
+      <div>
+        <div class="icon-wrapper">♾️</div>
+        <h3>Créditos sem Expiração</h3>
+        <p>Sua carga de créditos é vitalícia. Use hoje, no próximo mês ou distribua ao longo do ano conforme a necessidade real de demanda do seu squad ou projeto.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="section" id="precos">
-  <div class="section-header reveal">
-    <h2>O poder de escolha.</h2>
-    <p>Modelos de compra única. Sem assinaturas, sem cobranças surpresas.</p>
+<section class="section-padding" id="planos">
+  <div class="section-title reveal">
+    <h2>Planos diretos. Sem surpresas.</h2>
+    <p>Adquira pacotes de uso avulso de acordo com a sua necessidade.</p>
   </div>
 
   <div class="pricing-grid">
-    <div class="price-card reveal">
+    <div class="price-box reveal">
       <h3>Starter</h3>
-      <div class="price-amount"><span>R$</span>19,90</div>
-      <ul class="price-features">
-        <li>500 Créditos Lovable</li>
-        <li>Injeção Imediata</li>
-        <li>Segurança Padrão</li>
+      <div class="cost"><span>R$</span>19,90</div>
+      <ul class="price-list">
+        <li>500 Créditos Avulsos</li>
+        <li>Entrega Via Api</li>
+        <li>Suporte Padrão</li>
       </ul>
-      <a href="#" class="price-btn secondary">Comprar Starter</a>
+      <a href="#" class="price-action stroke">Escolher Pacote</a>
     </div>
 
-    <div class="price-card featured reveal">
+    <div class="price-box premium reveal">
       <h3>Profissional</h3>
-      <div class="price-amount"><span>R$</span>49,90</div>
-      <ul class="price-features">
-        <li>1.500 Créditos Lovable</li>
-        <li>Rota Prioritária (Mais rápido)</li>
-        <li>Segurança Criptografada</li>
-        <li>Suporte Especializado</li>
+      <div class="cost"><span>R$</span>49,90</div>
+      <ul class="price-list">
+        <li>1.500 Créditos Avulsos</li>
+        <li>Entrega Prioritária VIP</li>
+        <li>Segurança de Camada Dupla</li>
+        <li>Suporte Exclusivo</li>
       </ul>
-      <a href="#" class="price-btn primary">Comprar Profissional</a>
+      <a href="#" class="price-action fill">Escolher Profissional</a>
     </div>
 
-    <div class="price-card reveal">
+    <div class="price-box reveal">
       <h3>Studio</h3>
-      <div class="price-amount"><span>R$</span>139,90</div>
-      <ul class="price-features">
-        <li>5.000 Créditos Lovable</li>
-        <li>Servidor Dedicado VIP</li>
-        <li>Blindagem Máxima de Conta</li>
+      <div class="cost"><span>R$</span>139,90</div>
+      <ul class="price-list">
+        <li>5.000 Créditos Avulsos</li>
+        <li>Servidor Dedicado Estável</li>
+        <li>Blindagem Avançada</li>
       </ul>
-      <a href="#" class="price-btn secondary">Comprar Studio</a>
+      <a href="#" class="price-action stroke">Escolher Studio</a>
     </div>
   </div>
 </section>
 
-<footer style="background: #000; padding: 60px 0; border-top: 1px solid rgba(255,255,255,0.05); color: var(--gray-700); font-size: 13px;">
+<footer style="background: #000; padding: 40px 0; text-align: center; font-size: 13px;">
   <div style="max-width: var(--container-max); margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center;">
-    <div>© 2026 Infinity Technologies. Todos os direitos reservados.</div>
-    <div class="nav-logo" style="font-size: 16px;">Infinity<span>∞</span></div>
+    <div>© 2026 Infinity Technologies. Engenharia de alta performance.</div>
+    <div class="nav-logo" style="font-size: 15px;">Infinity<span>∞</span></div>
   </div>
 </footer>
 
 <script>
-/* ── STAR BACKGROUND LOGIC (APPLE/TECH STYLE) ── */
+/* ── INTERACTIVE STARFIELD EFFECT (APPLE TECH VERSION) ── */
 const canvas = document.getElementById('star-canvas');
 const ctx = canvas.getContext('2d');
 let stars = [];
-const starCount = 180;
-let mouse = { x: -1000, y: -1000 };
+const starCount = 160;
+let mouse = { x: -2000, y: -2000 };
 
 function initStars() {
   canvas.width = window.innerWidth;
@@ -645,9 +614,9 @@ function initStars() {
     stars.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      baseSize: Math.random() * 1.5 + 0.5,
-      opacity: Math.random() * 0.5 + 0.1,
-      speed: Math.random() * 0.3 + 0.1 // Drift speed
+      baseSize: Math.random() * 1.2 + 0.4,
+      opacity: Math.random() * 0.4 + 0.1,
+      speedY: -(Math.random() * 0.2 + 0.05) // Drift lento contínuo
     });
   }
 }
@@ -658,47 +627,51 @@ function drawStars() {
   for (let i = 0; i < stars.length; i++) {
     let s = stars[i];
     
-    // Movimento contínuo para cima (efeito parallax suave)
-    s.y -= s.speed;
+    // Movimento flutuante
+    s.y += s.speedY;
     if (s.y < 0) s.y = canvas.height;
-    
+
     let dx = mouse.x - s.x;
     let dy = mouse.y - s.y;
     let distance = Math.sqrt(dx * dx + dy * dy);
-    let maxDistance = 180; // Raio de interação do mouse
+    let maxDistance = 160; // Raio de influência do mouse
     
     let r = 255, g = 255, b = 255;
     let currentOpacity = s.opacity;
     let currentSize = s.baseSize;
     let glow = 0;
 
-    // Efeito magnético e de cor quando o mouse se aproxima
+    // Se estiver perto do mouse, ativa os efeitos tecnológicos de cor e link neural
     if (distance < maxDistance) {
-      let influence = 1 - (distance / maxDistance); // 0 a 1 (1 é muito perto)
+      let influence = 1 - (distance / maxDistance);
       
-      // Empurra sutilmente
-      s.x -= (dx / distance) * influence * 1.5;
-      s.y -= (dy / distance) * influence * 1.5;
-
-      // Transição de cor: Branco para Apple Blue (#2997ff -> rgb(41, 151, 255))
-      r = 255 - (214 * influence); 
-      g = 255 - (104 * influence);
+      // Fusão do Branco para o Roxo/Azul tecnológico da Apple
+      r = Math.floor(255 - (214 * influence));
+      g = Math.floor(255 - (130 * influence));
       b = 255;
-      
-      currentOpacity = Math.min(1, s.opacity + influence * 0.8);
-      currentSize = s.baseSize + (influence * 1.5);
-      glow = influence * 15; // Brilho neon
 
-      // Desenha linhas conectando ao mouse (Efeito Rede/Tech)
-      ctx.beginPath();
-      ctx.strokeStyle = `rgba(41, 151, 255, ${influence * 0.4})`;
-      ctx.lineWidth = 0.5;
-      ctx.moveTo(s.x, s.y);
-      ctx.lineTo(mouse.x, mouse.y);
-      ctx.stroke();
+      currentOpacity = Math.min(1, s.opacity + influence * 0.8);
+      currentSize = s.baseSize + (influence * 1.8);
+      glow = influence * 12;
+
+      // Desenha as teias neurais/linhas de rede apenas perto do mouse
+      for (let j = i + 1; j < stars.length; j++) {
+        let s2 = stars[j];
+        let s2dx = s.x - s2.x;
+        let s2dy = s.y - s2.y;
+        let s2dist = Math.sqrt(s2dx * s2dx + s2dy * s2dy);
+        
+        if (s2dist < 70 && Math.sqrt(mouse.x - s2.x)**2 + Math.sqrt(mouse.y - s2.y)**2 < maxDistance) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(41, 151, 255, ${influence * 0.18})`;
+          ctx.lineWidth = 0.4;
+          ctx.moveTo(s.x, s.y);
+          ctx.lineTo(s2.x, s2.y);
+          ctx.stroke();
+        }
+      }
     }
 
-    // Desenhar a estrela
     ctx.beginPath();
     ctx.arc(s.x, s.y, currentSize, 0, Math.PI * 2);
     ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${currentOpacity})`;
@@ -719,13 +692,13 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
-// Eventos de Mouse e Touch
+// Escutando eventos do Cursor de forma otimizada
 window.addEventListener('mousemove', (e) => {
   mouse.x = e.clientX;
   mouse.y = e.clientY;
 });
 window.addEventListener('mouseout', () => {
-  mouse.x = -1000; mouse.y = -1000;
+  mouse.x = -2000; mouse.y = -2000;
 });
 window.addEventListener('touchstart', (e) => {
   mouse.x = e.touches[0].clientX; mouse.y = e.touches[0].clientY;
@@ -738,7 +711,7 @@ window.addEventListener('resize', initStars);
 initStars();
 animate();
 
-/* ── SCROLL REVEAL (SUAVE E ELEGANTE) ── */
+/* ── INTERSECTION OBSERVER PARA REVEALS SUAVES ── */
 const reveals = document.querySelectorAll('.reveal');
 const revealObs = new IntersectionObserver((entries) => {
   entries.forEach((e) => {
@@ -747,21 +720,9 @@ const revealObs = new IntersectionObserver((entries) => {
       revealObs.unobserve(e.target);
     }
   });
-}, { threshold: 0.15 });
+}, { threshold: 0.12 });
 
 reveals.forEach((el) => revealObs.observe(el));
-
-/* ── NAVBAR SCROLL GLASSMORPHISM ── */
-const navEl = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 20) {
-    navEl.style.background = 'rgba(21, 21, 22, 0.85)';
-    navEl.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
-  } else {
-    navEl.style.background = 'rgba(0, 0, 0, 0.7)';
-    navEl.style.borderBottom = '1px solid rgba(255, 255, 255, 0.08)';
-  }
-}, { passive: true });
 </script>
 </body>
 </html>
